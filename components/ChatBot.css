@@ -1,0 +1,350 @@
+/* ============================================================
+   ChatBot – AF. AI Dark Glassmorphism
+   ============================================================ */
+
+.af-app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background: radial-gradient(
+    circle at center,
+    #1a1a2e 0%,
+    #0a0a0c 100%
+  );
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* Kartu utama gelap kaca */
+.af-card {
+  width: 900px;
+  max-width: 92vw;
+  height: 72vh;
+  max-height: 720px;
+  background: rgba(15, 15, 20, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    inset 0 0 40px rgba(0, 180, 255, 0.04);
+  color: #e8eaed;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Glow di pojok kanan atas kartu */
+.af-card::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(0, 180, 255, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+/* Header */
+.af-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px 28px 0 28px;
+  position: relative;
+  z-index: 2;
+}
+
+.af-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.af-icon {
+  width: 32px;
+  height: 32px;
+  background: conic-gradient(
+    from 0deg,
+    #ff00cc,
+    #3333ff,
+    #00ccff,
+    #ff00cc
+  );
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #fff;
+  box-shadow: 0 0 15px rgba(0, 204, 255, 0.6);
+}
+
+.af-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #fff;
+}
+
+.af-subtitle {
+  margin-top: 4px;
+}
+
+.af-subtitle p {
+  margin: 2px 0;
+  font-size: 13px;
+  color: #a0a0b0;
+}
+
+/* Log pesan */
+.af-log {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Empty state */
+.af-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #888ca0;
+  text-align: center;
+}
+
+.af-empty-title {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #e8eaed;
+}
+
+.af-empty-hint {
+  margin: 0;
+  font-size: 13px;
+  color: #888ca0;
+}
+
+/* Pesan */
+.af-msg {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 82%;
+  animation: fadeIn 0.25s ease;
+}
+
+.af-user {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+.af-assistant {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+
+.af-bubble {
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 15px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+}
+
+.af-user .af-bubble {
+  background: rgba(255, 255, 255, 0.06);
+  color: #e8eaed;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.af-assistant .af-bubble {
+  background: rgba(0, 180, 255, 0.08);
+  color: #e8eaed;
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 180, 255, 0.15);
+}
+
+/* Typing */
+.af-typing {
+  display: flex;
+  gap: 5px;
+  padding: 12px 16px;
+  background: rgba(0, 180, 255, 0.06);
+  border: 1px solid rgba(0, 180, 255, 0.15);
+  border-radius: 16px;
+  border-bottom-left-radius: 4px;
+  width: fit-content;
+  backdrop-filter: blur(8px);
+}
+
+.af-typing i {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00b4ff;
+  animation: bounce 1.4s infinite ease-in-out both;
+  box-shadow: 0 0 8px rgba(0, 180, 255, 0.6);
+}
+
+.af-typing i:nth-child(1) {
+  animation-delay: -0.32s;
+}
+.af-typing i:nth-child(2) {
+  animation-delay: -0.16s;
+}
+.af-typing i:nth-child(3) {
+  animation-delay: 0s;
+}
+
+/* Error */
+.af-error {
+  margin: 0 28px 12px 28px;
+  padding: 10px 14px;
+  background: rgba(255, 60, 60, 0.1);
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 80, 80, 0.25);
+  border-radius: 10px;
+  font-size: 13px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Form input */
+.af-form {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 28px 24px 28px;
+  background: rgba(10, 10, 12, 0.9);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+  z-index: 2;
+}
+
+.af-input {
+  flex: 1;
+  min-height: 48px;
+  max-height: 160px;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  font-size: 15px;
+  line-height: 1.5;
+  resize: none;
+  font-family: inherit;
+  outline: none;
+  color: #e8eaed;
+  transition: all 0.2s ease;
+}
+
+.af-input:focus {
+  border-color: #00b4ff;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(0, 180, 255, 0.12);
+}
+
+.af-input::placeholder {
+  color: #888ca0;
+}
+
+/* Tombol Kirim */
+.af-send {
+  min-width: 100px;
+  height: 48px;
+  padding: 0 24px;
+  border: none;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.af-send:not(.af-stop) {
+  background: linear-gradient(135deg, #00b4ff 0%, #0066ff 100%);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(0, 180, 255, 0.4);
+}
+
+.af-send:not(.af-stop):hover:not(:disabled) {
+  background: linear-gradient(135deg, #00c4ff 0%, #1a75ff 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 0 30px rgba(0, 180, 255, 0.5);
+}
+
+.af-send:not(.af-stop):active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.af-send.af-stop {
+  background: rgba(255, 255, 255, 0.1);
+  color: #b0b0c0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.af-send:disabled {
+  background: rgba(255, 255, 255, 0.08);
+  color: #666;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Animasi */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Scrollbar */
+.af-log::-webkit-scrollbar {
+  width: 8px;
+}
+.af-log::-webkit-scrollbar-track {
+  background: transparent;
+}
+.af-log::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+.af-log::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
