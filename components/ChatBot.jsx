@@ -91,7 +91,7 @@ export default function ChatBot({ endpoint = "/api/chat", title = "AF. AI" }) {
       <section className="af-card" aria-label={title}>
         <header className="af-header">
           <div className="af-brand">
-            <span className="af-icon">🧠</span>
+            <img src="/af-logo.png.jpeg" alt="Logo AF" className="af-icon" />
             <span className="af-title">{title}</span>
           </div>
           <div className="af-subtitle">
